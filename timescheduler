@@ -1,0 +1,29 @@
+
+import java.util.Date; //to capture system time
+import java.util.Timer;//schedule task
+import java.util.TimerTask;//define a task to shedule
+
+public class ExecuteTimer {
+    public static void main(String[] args){ //entry point for the whole prog
+        TimerExample te1=new TimerExample("Task1");
+        TimerExample te2=new TimerExample("Task2");
+        Timer t=new Timer();
+        t.scheduleAtFixedRate(te1, 0,5*1000);
+        t.scheduleAtFixedRate(te2, 0,1000);
+    }
+}
+class TimerExample extends TimerTask {
+    private String name ; //variable for taskname
+    public TimerExample(String n){ //constructor to initialize var name
+        this.name=n; //var for current class
+    }
+    @Override //task scheduling
+    public void run() {//entry point for thread excution
+        System.out.println(Thread.currentThread().getName()+" "+name+" the task has executed successfully "+ new Date());
+        if("Task1".equalsIgnoreCase(name)){//compare threads
+            try {
+                Thread.sleep (10000);//pause excution ov curent thread
+            } catch (InterruptedException e)   {
+
+                e.printStackTrace();  //thrown wen thread is waiting
+            }}}}
